@@ -11,6 +11,8 @@
     "start": "node server.js && npm run css-watch"
   },
   "dependencies": {
+    "buefy": "^0.8.6",
+    "bulma": "^0.8.0",
     "express": "^4.17.1",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
