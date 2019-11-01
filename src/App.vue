@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <Home/>
+    <Navbar/>
+    <ContentDiv/>
   </div>
 </template>
 
 <script>
-import Home from './Home.vue'
+import ContentDiv from './components/ContentDiv.vue'
+import Navbar from './components/Navbar.vue'
 
 export default {
   beforeCreate(){
@@ -15,7 +17,8 @@ export default {
     window.addEventListener('resize', () => this.$store.dispatch('triggerResponsividade'));
   },
   components:{
-    Home
+    Navbar,
+    ContentDiv
   }
 }
 </script>

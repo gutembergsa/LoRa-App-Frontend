@@ -8,7 +8,7 @@
     "css-build": "node-sass --omit-source-map-url ./sass/mystyles.scss ./css/mystyles.css",
     "css-watch": "npm run css-build -- --watch",
     "postinstall": "npm run build",
-    "start": "node dist/server.js && npm run css-watch"
+    "start": "node server.js && npm run css-watch"
   },
   "dependencies": {
     "buefy": "^0.8.6",
