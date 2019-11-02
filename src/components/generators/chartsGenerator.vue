@@ -18,7 +18,7 @@ export default {
         showChart1: false,
         showChart2: false,
         data1:  chartFetch
-                    .fetcher('Temperatura em C°')
+                    .fetcher(`Temperatura em C°`)
                     .then(dataset => {
                         this.data1 = dataset
                         this.showChart1 = true
@@ -31,14 +31,14 @@ export default {
                         this.showChart2 = true
                     }
         ),
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
+        options: {         
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
         }
     }
   }

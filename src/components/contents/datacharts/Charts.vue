@@ -4,12 +4,12 @@
             <div class="hero-body">
                 <div class="container" style="height: 100%;">
                     <h1 class="title has-text-left is-size-5">
-                        {{graphTitle}}
+                        {{`${graphTitle} || ${this.dateAux.getDate()}-${this.dateAux.getMonth() + 1}-${this.dateAux.getFullYear()}`}}
                     </h1>
                 </div>
             </div>
         </section>
-        <canvas ref="myChart">  
+        <canvas ref="myChart" class="chart">  
         </canvas>
     </div>
 </template>
@@ -38,6 +38,8 @@ export default {
     data(){
         return{
             chartElement: null,
+            dateAux: new Date()
+
         }
     },
     props:{
@@ -52,5 +54,8 @@ export default {
 </script>
 
 <style>
-
+.chart{
+width:auto;
+height:auto;
+}
 </style>
