@@ -5,7 +5,7 @@
         <div class="field" :class="{'slider-index': this.$store.getters.returnSideMenuState === 'close', 'is-relative': this.$store.getters.returnSideMenuState === 'close'}">
             <b-switch size="is-large" v-model="isSwitched"></b-switch>
         </div>
-        <div class="has-text-left text is-size-6">Status: {{this.isSwitched ? 'Ativo' : 'Desativado'}}</div>
+        <div v-if="showStatus" class="has-text-left text is-size-6">Status: {{this.isSwitched ? 'Ativo' : 'Desativado'}}</div>
     </div>      
 </template>
 
@@ -15,6 +15,9 @@ export default {
         return{
             isSwitched: false,
         }
+    },
+    props:{
+        showStatus: Boolean
     }
 }
 </script>

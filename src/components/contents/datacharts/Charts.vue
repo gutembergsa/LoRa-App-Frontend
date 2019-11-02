@@ -1,6 +1,6 @@
 <template>
-    <div class="container" style="margin-top:50px;"> 
-        <section class="hero is-pink is-bold" :class="{'is-small': this.$store.getters.returnMobileSize}">
+    <div class="container" :class="{'is-small': this.$store.getters.returnMobileSize}" style="margin-top:50px;"> 
+        <section :class="heroColor" class="hero is-bold">
             <div class="hero-body">
                 <div class="container" style="height: 100%;">
                     <h1 class="title has-text-left is-size-5">
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Chart from 'chart.js';
 export default {
     mounted(){
@@ -23,6 +24,7 @@ export default {
             data: this.data,
             options: this.options,
         });
+        setInterval(() => this.chartElement.update(), 5000);
     },
     data(){
         return{
@@ -33,7 +35,8 @@ export default {
         type: String,
         data: Object,
         options: Object,
-        graphTitle: String
+        graphTitle: String,
+        heroColor: String
     }
 
 }

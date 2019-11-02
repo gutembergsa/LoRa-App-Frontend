@@ -2,8 +2,8 @@
     <div class="column notification" :class="bulmaColor">
         <label class="title has-text-centered">{{title}}</label>
         <br>
-        <span class="text is-size-1">
-            <i v-if="showIcon" :class="icon"></i>
+        <span v-if="showIcon" class="text is-size-1">
+            <i :class="icon"></i>
         </span>
         <span class="text" :class="{'is-size-1': !showIcon, 'is-size-2': showIcon}">
             {{valorBruto}}  
@@ -20,7 +20,7 @@
 export default {
     props:{
         title: String,
-        valorBruto: String && Number,
+        valorBruto: Uint8Array & Number & String,
         unidade: String,
         grandeza: String,
         showIcon: Boolean,

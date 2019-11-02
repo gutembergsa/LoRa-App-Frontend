@@ -1,5 +1,5 @@
 <template>
-<section class="hero is-grey-darker is-bold is-small">
+<section class="hero is-grey-darker is-small">
   <div class="hero-body has-text-centered ">
     <div class="container is-centered ">
       <h1 class="title is-size-1 has-text-grey-lighter">

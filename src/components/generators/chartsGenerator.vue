@@ -1,0 +1,49 @@
+<template>
+    <div>     
+      <chartsComp v-if="showChart1" type="line" heroColor="is-pink" v-bind:data="data1" :options="options" graphTitle="Temperatura"/>
+      <chartsComp v-if="showChart2" type="line" heroColor="is-dark" v-bind:data="data2" :options="options" graphTitle="RX/TX"/>
+    </div>
+</template>
+
+<script>
+import chartsComp from '../contents/datacharts/Charts'
+import chartFetch from '../../../chartDataFetch'
+
+export default {
+  components:{
+    chartsComp,
+  },
+  data(){
+    return{
+        showChart1: false,
+        showChart2: false,
+        data1: chartFetch
+                    .fetcher('temperatura')
+                    .then(dataset => {
+                        this.data1 = dataset
+                        this.showChart1 = true
+                    }
+        ),
+        data2: chartFetch
+                    .fetcher('RX/TX')
+                    .then(dataset => {
+                        this.data2 = dataset
+                        this.showChart2 = true
+                    }
+        ),
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    }
+  }
+}
+</script>
+
+<style>
+</style>
