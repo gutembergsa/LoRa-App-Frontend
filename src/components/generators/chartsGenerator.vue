@@ -18,7 +18,7 @@ export default {
         showChart1: false,
         showChart2: false,
         data1: chartFetch
-                    .fetcher('temperatura')
+                    .fetcher('Temperatura em C° ')
                     .then(dataset => {
                         this.data1 = dataset
                         this.showChart1 = true

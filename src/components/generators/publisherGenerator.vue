@@ -27,7 +27,7 @@ export default {
         this.connectToBroker()
             .then(broker =>{
                 broker.on('message', this.checkMessage)
-                broker.subscribe('temperature')
+                broker.subscribe('temperatura')
                 broker.subscribe('status')
             })
             .catch(err=> console.log(err))
@@ -48,7 +48,14 @@ export default {
     methods:{
         connectToBroker(){
             return new Promise((resolve, reject)=>{
-                let mqttClient = mqtt.connect(environment.broker_uri)
+                let mqttClient = mqtt.connect(environment.broker_uri,{
+                    wsOptions: {    
+                        host: 'wss://fqqjkyka:JTc0rI7CORXv@tailor-01.cloudmqtt.com',
+                        port: 38819,
+                        path: '/mqtt'
+                    },
+                    clientId: 'FrontLoragutem'
+                })
                 mqttClient.on('connect', ()=> {
                     resolve(mqttClient)
                     if (!mqttClient.connected) {
@@ -60,7 +67,7 @@ export default {
         checkMessage(topic, payload, packet){
             let payloadFormatted = payload.toString().split(' | ')
             switch (topic) {
-                case 'temperature':
+                case 'temperatura':
                     console.log(`pacote: ${Object.values(packet)}`);
                     this.temperature = payloadFormatted[0]
                     this.latency = payloadFormatted[1]
