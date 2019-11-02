@@ -17,6 +17,8 @@
 <script>
 import axios from "axios";
 import Chart from 'chart.js';
+import chartFetch from '../../../../chartDataFetch'
+
 export default {
     mounted(){
         this.chartElement = new Chart(this.$refs.myChart.getContext('2d'), {
@@ -24,7 +26,14 @@ export default {
             data: this.data,
             options: this.options,
         });
-        setInterval(() => this.chartElement.update(), 5000);
+        setInterval(() => {
+            chartFetch
+            .fetcher('Temperatura em C°')
+            .then(dataset => {
+                this.chartElement.config.data = dataset
+                this.chartElement.update()
+            })            
+        }, 60000);
     },
     data(){
         return{

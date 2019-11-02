@@ -4,13 +4,13 @@
             <textCard :showIcon="true" :valorBruto="this.temperature" icon="fa fa-thermometer-empty" grandeza='Temperatura' unidade='C°'/>
         </div>
         <div class="column is-full">
-            <textCard :showIcon="false" :valorBruto="this.temperature"  grandeza='Latencia' unidade='dBm'/>
+            <textCard :showIcon="false" :valorBruto="this.latency"  grandeza='Latencia' unidade='dBm'/>
         </div>
         <div class="column ">
-            <textCard :showIcon="false" :valorBruto="this.temperature" grandeza='Recebidos' unidade='Pacotes'/>
+            <textCard :showIcon="false" :valorBruto="this.received" grandeza='Recebidos' unidade='Pacotes'/>
         </div>
         <div class="column">
-            <textCard :showIcon="false" :valorBruto="this.temperature" grandeza='Enviados' unidade='Pacotes'/>
+            <textCard :showIcon="false" :valorBruto="this.sent" grandeza='Enviados' unidade='Pacotes'/>
         </div>
     </div> 
 </template>
@@ -29,6 +29,8 @@ export default {
                 broker.on('message', this.checkMessage)
                 broker.subscribe('temperatura')
                 broker.subscribe('status')
+                this.temperature = this.$store.getters.returnLastPacket.value
+                this.latency = this.$store.getters.returnLastPacket.latency
             })
             .catch(err=> console.log(err))
     },
@@ -49,11 +51,6 @@ export default {
         connectToBroker(){
             return new Promise((resolve, reject)=>{
                 let mqttClient = mqtt.connect(environment.broker_uri,{
-                    wsOptions: {    
-                        host: 'wss://fqqjkyka:JTc0rI7CORXv@tailor-01.cloudmqtt.com',
-                        port: 38819,
-                        path: '/mqtt'
-                    },
                     clientId: 'FrontLoragutem'
                 })
                 mqttClient.on('connect', ()=> {
@@ -68,19 +65,15 @@ export default {
             let payloadFormatted = payload.toString().split(' | ')
             switch (topic) {
                 case 'temperatura':
-                    console.log(`pacote: ${Object.values(packet)}`);
+                    console.log(`pacote temp: ${Object.values(packet)}`);
                     this.temperature = payloadFormatted[0]
                     this.latency = payloadFormatted[1]
                     break;
                 case 'ratings':
-                    console.log(`pacote: ${packet}`);
+                    console.log(`pacote rat: ${packet}`);
                     this.received = payloadFormatted[0]
                     this.sent = payloadFormatted[1]
                     break;
-                case 'status':
-                    console.log(`data: ${payload} pacote: ${Object.values(packet)}`);
-                    break;
-            
                 default:
                     break;
             }
