@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.96467a9ec4325b9e2fa1e99a56fb96d6.js"
+  "/precache-manifest.5e6bc47753a4f2c23d0960a1bd2f99e4.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "lora-project-web-app"});
