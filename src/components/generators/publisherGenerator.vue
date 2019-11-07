@@ -28,7 +28,7 @@ export default {
             .then(broker =>{
                 broker.on('message', this.checkMessage)
                 broker.subscribe('temperatura')
-                broker.subscribe('status')
+                broker.subscribe('ratings')
                 this.temperature = this.$store.getters.returnLastPacket.value
                 this.latency = this.$store.getters.returnLastPacket.latency
             })
