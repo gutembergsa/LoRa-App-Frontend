@@ -71,7 +71,7 @@ export default {
                     this.latency = pld2[1]
                     break;
                 case 'ratings':
-                    let payloadFormatted = payload.toString().split(' | ')
+                    let payloadFormatted = payload.toString().split('|')
                     console.log(`pacote rat: ${packet}`);
                     this.received = payloadFormatted[0]
                     this.sent = payloadFormatted[1]
