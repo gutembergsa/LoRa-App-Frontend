@@ -1,6 +1,7 @@
 <template>
     <div>     
       <chartsComp v-if="showChart1" type="line" heroColor="is-pink" v-bind:data="data1" :options="options" graphTitle="Temperatura"/>
+      <chartsComp v-if="showChart2" type="line" heroColor="is-dark" v-bind:data="data2" :options="options" graphTitle="RX/TX"/>
     </div>
 </template>
 
