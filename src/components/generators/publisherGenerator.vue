@@ -77,7 +77,7 @@ export default {
                 case 'ratings':
                     let payloadFormatted = payload.toString().split('|')
                     console.log(`pacote rat: ${packet}`);
-                    this.received = payloadFormatted[0]
+                    this.receive = payloadFormatted[0]
                     this.sent = payloadFormatted[1]
                     break;
                 default:
