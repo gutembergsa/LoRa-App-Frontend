@@ -23,6 +23,13 @@ export default {
                         this.showChart1 = true
                     }
         ),
+        data2: chartFetch
+                    .fetcher('RX/TX', 'ratingtopic')
+                    .then(dataset => {
+                        this.data2 = dataset
+                        this.showChart2 = true
+                    }
+        ),
         options: {         
           scales: {
               yAxes: [{
