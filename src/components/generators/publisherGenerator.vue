@@ -7,7 +7,7 @@
             <textCard :showIcon="false" :valorBruto="this.latency"  grandeza='Latencia' unidade='dBm'/>
         </div>
         <div class="column ">
-            <textCard :showIcon="false" :valorBruto="this.received" grandeza='Recebidos' unidade='Pacotes'/>
+            <textCard :showIcon="false" :valorBruto="this.receive" grandeza='Recebidos' unidade='Pacotes'/>
         </div>
         <div class="column">
             <textCard :showIcon="false" :valorBruto="this.sent" grandeza='Enviados' unidade='Pacotes'/>
@@ -29,8 +29,12 @@ export default {
                 broker.on('message', this.checkMessage)
                 broker.subscribe('temperatura')
                 broker.subscribe('ratings')
-                this.temperature = this.$store.getters.returnLastPacket.value
-                this.latency = this.$store.getters.returnLastPacket.latency
+                setTimeout(() => {
+                    this.temperature = this.$store.getters.returnLastPacket.value
+                    this.latency = this.$store.getters.returnLastPacket.latency                    
+                    this.receive = this.$store.getters.returnLastRate.receive       
+                    this.sent = this.$store.getters.returnLastRate.sent
+                }, 3000);
             })
             .catch(err=> console.log(err))
     },
@@ -38,7 +42,7 @@ export default {
         return{
             temperature: 0,
             latency: 0,
-            received: 0,
+            receive: 0,
             sent: 0
         }
     },
