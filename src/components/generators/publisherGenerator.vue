@@ -62,14 +62,16 @@ export default {
             })
         },
         checkMessage(topic, payload, packet){
-            let payloadFormatted = payload.toString().split(' | ')
             switch (topic) {
                 case 'temperatura':
+                    let pld = payload.toString().split('.')
+                    let pld2 = pld[1].split('!')
                     console.log(`pacote temp: ${Object.values(packet)}`);
-                    this.temperature = payloadFormatted[0]
-                    this.latency = payloadFormatted[1]
+                    this.temperature = pld[0]
+                    this.latency = pld2[1]
                     break;
                 case 'ratings':
+                    let payloadFormatted = payload.toString().split(' | ')
                     console.log(`pacote rat: ${packet}`);
                     this.received = payloadFormatted[0]
                     this.sent = payloadFormatted[1]

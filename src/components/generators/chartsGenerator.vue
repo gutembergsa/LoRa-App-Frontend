@@ -25,7 +25,7 @@ export default {
                     }
         ),
         data2: chartFetch
-                    .fetcher('RX/TX')
+                    .fetcher('RX/TX', 'ratingtopic')
                     .then(dataset => {
                         this.data2 = dataset
                         this.showChart2 = true

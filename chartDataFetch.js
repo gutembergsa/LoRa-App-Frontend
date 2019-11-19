@@ -6,7 +6,7 @@ const dateAux = new Date()
 
 
 export default{
-    fetcher(dataLabel, borderColor, backColor, resource = 'first'){
+    fetcher(dataLabel, resource = 'temptopic'){
         return new Promise((resolve, reject) =>{
             axios
             .get(`https://mongo-lora-gutem.herokuapp.com/${resource}/${dateAux.getDate()}-${(dateAux.getMonth() + 1)}-${dateAux.getFullYear()}`)
