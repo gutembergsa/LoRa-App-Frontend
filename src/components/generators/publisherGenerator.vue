@@ -29,12 +29,10 @@ export default {
                 broker.on('message', this.checkMessage)
                 broker.subscribe('temperatura')
                 broker.subscribe('ratings')
-                setTimeout(() => {
-                    this.temperature = this.$store.getters.returnLastPacket.value
-                    this.latency = this.$store.getters.returnLastPacket.latency                    
-                    this.receive = this.$store.getters.returnLastRate.receive       
-                    this.sent = this.$store.getters.returnLastRate.sent
-                }, 3000);
+                this.temperature = this.$store.getters.returnLastPacket.value
+                this.latency = this.$store.getters.returnLastPacket.latency                    
+                this.receive = this.$store.getters.returnLastRate.receive       
+                this.sent = this.$store.getters.returnLastRate.sent
             })
             .catch(err=> console.log(err))
     },
