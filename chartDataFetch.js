@@ -12,7 +12,6 @@ export default{
             axios
             .get(url)
             .then(resp=>{
-                console.log(resp.data[resp.data.length - 1]);
                 if (resource == 'temptopic') {
                     store.dispatch('recoverLastPacket', resp.data[resp.data.length - 1]);                        
                 }

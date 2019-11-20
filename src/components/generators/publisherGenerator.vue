@@ -4,7 +4,7 @@
             <textCard :showIcon="true" :valorBruto="this.temperature" icon="fa fa-thermometer-empty" grandeza='Temperatura' unidade='C°'/>
         </div>
         <div class="column is-full">
-            <textCard :showIcon="false" :valorBruto="this.latency"  grandeza='Latencia' unidade='dBm'/>
+            <textCard :showIcon="false" :valorBruto="this.latency" icon="fas fa-rss" grandeza='Latência' unidade='dBm'/>
         </div>
         <div class="column ">
             <textCard :showIcon="false" :valorBruto="this.receive" grandeza='Recebidos' unidade='Pacotes'/>
@@ -70,21 +70,19 @@ export default {
                 case 'temperatura':
                     let pld = payload.toString().split('.')
                     let pld2 = pld[1].split('!')
-                    console.log(`pacote temp: ${Object.values(packet)}`);
                     this.temperature = pld[0]
                     this.latency = pld2[1]
                     break;
                 case 'ratings':
                     let payloadFormatted = payload.toString().split('|')
-                    console.log(`pacote rat: ${packet}`);
-                    this.receive = payloadFormatted[0]
-                    this.sent = payloadFormatted[1]
+                    this.sent = payloadFormatted[0]
+                    this.receive = payloadFormatted[1]
                     break;
                 default:
                     break;
             }
         }
-    },
+    }
 }
 </script>
 
