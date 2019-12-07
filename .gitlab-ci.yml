@@ -1,15 +1,30 @@
-pages: # the job must be named pages
-  image: node:latest
-  stage: deploy
+# Node docker image on which this would be run
+image: node:latest
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - test
+  - deploy_production
+
+# Job 1:
+Test:
+  stage: test
   script:
-    - npm ci
-    - npm run build
-    - mv public public-vue # GitLab Pages hooks on the public folder
-    - mv dist public # rename the dist folder (result of npm run build)
-    # optionally, you can activate gzip support wih the following line:
-    - find public -type f -regex '.*\.\(htm\|html\|txt\|text\|js\|css\)$' -exec gzip -f -k {} \;
-  artifacts:
-    paths:
-      - public # artifact path must be /public for GitLab Pages to pick it up
+    - npm install
+    - npm run test
+
+# Job 2:
+# Deploy to staging
+Production:
+  image: ruby:latest
   only:
     - master
+  stage: deploy_production
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
