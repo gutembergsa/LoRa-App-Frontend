@@ -15,10 +15,6 @@ export default {
   components:{
     pubGenerator,
     chartGenerator,
-  },
-  data(){
-    return{
-    }
   }
 }
 </script>
