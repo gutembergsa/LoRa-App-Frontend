@@ -8,6 +8,7 @@ pages: # the job must be named pages
     - mv dist public # rename the dist folder (result of npm run build)
     # optionally, you can activate gzip support wih the following line:
     - find public -type f -regex '.*\.\(htm\|html\|txt\|text\|js\|css\)$' -exec gzip -f -k {} \;
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
   artifacts:
     paths:
       - public # artifact path must be /public for GitLab Pages to pick it up
