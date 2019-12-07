@@ -1,5 +1,5 @@
 build site:
-  image: node:6
+  image: node:10.15.3
   stage: build
   script:
     - npm install --progress=false
@@ -8,7 +8,7 @@ build site:
     expire_in: 1 week
     paths:
       - dist
-      
+
 deploy:
   image: alpine
   stage: deploy
