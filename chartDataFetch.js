@@ -9,7 +9,7 @@ export default{
     dateChartFetch(date){
         return new Promise((resolve, reject) =>{
             axios
-            .get(`ttps://mongo-lora-gutem.herokuapp.com/temptopic/${date}`)
+            .get(`https://mongo-lora-gutem.herokuapp.com/temptopic/${date}`)
             .then(resp => {
                 resolve ({
                     labels: resp.data.map(v => v.hour).sort(),
@@ -29,14 +29,14 @@ export default{
     dateList(){
         return new Promise((resolve, reject) =>{
             axios
-            .get('http://localhost:3000/temptopic')
+            .get('https://mongo-lora-gutem.herokuapp.com/temptopic')
             .then(resp => resolve([... new Set(resp.data.map(v => v.date))]))
             .catch(err => reject(err))
         })        
     },
     fetcher(dataLabel, resource = 'temptopic'){
         return new Promise((resolve, reject) =>{
-            let url = (resource === 'temptopic' ? `http://localhost:3000/${resource}/${dateAux.getDate()}-${(dateAux.getMonth() + 1)}-${dateAux.getFullYear()}` : `http://localhost:3000/${resource}`)
+            let url = (resource === 'temptopic' ? `https://mongo-lora-gutem.herokuapp.com/${resource}/${dateAux.getDate()}-${(dateAux.getMonth() + 1)}-${dateAux.getFullYear()}` : `https://mongo-lora-gutem.herokuapp.com/${resource}`)
             axios
             .get(url)
             .then(resp=>{                     
