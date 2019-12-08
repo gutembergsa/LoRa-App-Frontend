@@ -6,18 +6,9 @@ cache:
     - node_modules/
 
 stages:
-  - test
   - deploy_production
 
-# Job 1:
-Test:
-  stage: test
-  script:
-    - npm install
-    - npm run test
-
-# Job 2:
-# Deploy to staging
+# Deploy
 Production:
   image: ruby:latest
   only:

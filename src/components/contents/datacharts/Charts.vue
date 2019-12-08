@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Chart from 'chart.js';
 import chartFetch from '../../../../chartDataFetch'
 

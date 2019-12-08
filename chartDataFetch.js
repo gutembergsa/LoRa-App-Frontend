@@ -9,7 +9,7 @@ export default{
     dateChartFetch(date){
         return new Promise((resolve, reject) =>{
             axios
-            .get(`http://localhost:3000/temptopic/${date}`)
+            .get(`ttps://mongo-lora-gutem.herokuapp.com/temptopic/${date}`)
             .then(resp => {
                 resolve ({
                     labels: resp.data.map(v => v.hour).sort(),
